@@ -61,7 +61,7 @@ const Signup = () => {
           <div className="flex justify-around mt-4">
             <button className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">Signup</button>
             <p>
-              Have account?
+              Have account?{" "}
               <button
                 className="underline text-blue-500 cursor-pointer"
                 onClick={() =>

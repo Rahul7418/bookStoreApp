@@ -3,7 +3,8 @@ import Home from "./home/Home";
 import Courses from "./courses/Courses";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Contact from "./contact/Contact"
+import About from "./about/About";
+import Contact from "./contact/contact";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/Signup" element = {<Signup />} />
         <Route path="/Login" element = {<Login />} />
-        <Route path="/contact" element = {<Contact />} />
+        <Route path="/contact" element = {<Contact />}/>
+        <Route path="/about" element={<About />} />
       </Routes>
   );
 }

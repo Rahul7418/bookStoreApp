@@ -1,14 +1,27 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import axios from "axios"
+import toast from "react-hot-toast"
 
 const Contact = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post("http://localhost:4001/api/contact", data)
+      console.log(res.data)
+      toast.success("Message submitted successfully!")
+      reset() // clear form after submit
+    } catch (error) {
+      console.error(error)
+      toast.error("Failed to submit message")
+    }
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-slate-900">

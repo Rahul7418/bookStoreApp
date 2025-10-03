@@ -1,15 +1,38 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Login from "./Login"
 import { useForm } from "react-hook-form"
+import axios from "axios"
+import toast from "react-hot-toast"
 
 const Signup = () => {
-   const {
+  const navegate = useNavigate()
+  const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = async (data) => {
+      const userInfo = {
+        fullname: data.fullname,
+        email: data.email,
+        password: data.password
+      }
+      await axios.post("http://localhost:4001/user/signup", userInfo)
+      .then((res) => {
+        console.log(res.data)
+        if(res.data){
+          toast.success("Signup Successfully");
+          navegate("/")
+        }
+        localStorage.setItem("Users", JSON.stringify(res.data.user))
+      })
+      .catch((err) =>{
+        console.log(err)
+        toast.error("Error: " +  err.response.data.message)
+      })
+    }
+
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="modal-box dark:bg-slate-900 dark:text-white">
@@ -23,15 +46,15 @@ const Signup = () => {
           <h3 className="font-bold text-lg">Signup</h3>
 
           <div className="mt-4 space-y-4 flex flex-col">
-            <span>Name</span>
+            <span>Full Name</span>
             <br />
             <input
               type="text"
-              placeholder="Enter your name"
+              placeholder="Enter your full name"
               className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
-              {...register("name", { required: true })}
+              {...register("fullname", { required: true })}
             />
-            {errors.name && <span className="text-sm text-red-500">This field is required</span>}
+            {errors.fullname && <span className="text-sm text-red-500">This field is required</span>}
           </div>
 
           <div className="mt-4 space-y-4">
@@ -40,7 +63,7 @@ const Signup = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex fleex-col w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
+              className="flex flex-col w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
               {...register("email", { required: true })}
             />
             {errors.email && <span className="text-sm text-red-500">This field is required</span>}
@@ -52,7 +75,7 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              className="flex fleex-col w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
+              className="flex flex-col w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
               {...register("password", { required: true })}
             />
             {errors.password && <span className="text-sm text-red-500">This field is required</span>}

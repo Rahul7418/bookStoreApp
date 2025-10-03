@@ -105,7 +105,7 @@ const About = () => {
                                 alt="Team member"
                                 className="mx-auto rounded-full mb-4"
                             />
-                            <h3 className="font-semibold">Tarun Sharma</h3>
+                            <h3 className="font-semibold">Ishika Rathore</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                                 Frontend Developer
                             </p>
@@ -116,7 +116,7 @@ const About = () => {
                                 alt="Team member"
                                 className="mx-auto rounded-full mb-4"
                             />
-                            <h3 className="font-semibold">Neha Verma</h3>
+                            <h3 className="font-semibold">Tarun Pawar</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                                 UI/UX Designer
                             </p>

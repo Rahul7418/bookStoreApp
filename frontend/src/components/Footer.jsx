@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -5,8 +6,8 @@ export default function Footer() {
       <hr/>
       <footer className="footer footer-center  text-base-content rounded p-10 dark:text-white dark:bg-slate-900">
         <nav className="grid grid-flow-col gap-4">
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
+          <Link to="/about" className="link link-hover">About us</Link>
+          <Link to= "/contact" className="link link-hover">Contact</Link>
           <a className="link link-hover">Jobs</a>
           <a className="link link-hover">Press kit</a>
         </nav>
